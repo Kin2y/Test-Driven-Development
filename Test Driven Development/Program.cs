@@ -121,6 +121,7 @@ namespace Test_Driven_Development
         }
         public static void GetCategoryOfProduct(int productID)
         {
+            string categoryName = "Category for product with ID 0 not found";
             using var connection = new MySqlConnection(connStr);
             connection.Open();
             using var command = new MySqlCommand("SELECT categoryName FROM products, categories WHERE productID = @productID", connection);
@@ -128,7 +129,7 @@ namespace Test_Driven_Development
             using var reader = command.ExecuteReader();
             if (reader.Read())
             {
-                Console.WriteLine(reader.GetString(0));
+                categoryName = reader.GetString(0);
             }
         }
         public static void GetSupplierOfProduct(int productID)
@@ -213,7 +214,7 @@ namespace Test_Driven_Development
             string FullCustomerAddress = "Address for customer with ID 0 not found";
             using var connection = new MySqlConnection(connStr);
             connection.Open();
-            using var command = new MySqlCommand("SELECT Address, City FROM customers WHERE customerID = @customerID;", connection);
+            using var command = new MySqlCommand("SELECT Address, City, PostalCode FROM customers WHERE customerID = @customerID;", connection);
             command.Parameters.AddWithValue("@customerID", customerID);
             using var reader = command.ExecuteReader();
             if (reader.Read())

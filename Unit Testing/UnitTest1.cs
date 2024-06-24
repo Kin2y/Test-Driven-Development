@@ -166,6 +166,7 @@ namespace Unit_Testing
         [Test]
         public void TestGetCategoryOfProduct1()
         {
+            //string categoryName = new categoryName();
             using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
             Program.GetCategoryOfProduct(0);

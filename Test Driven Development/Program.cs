@@ -180,7 +180,7 @@ namespace Test_Driven_Development
         }
         public static void GetCustomerName(int customerID)
         {
-            string customerName = "not found";
+            string customerName = "Customer with ID 0 not found";
             using var connection = new MySqlConnection(connStr);
             connection.Open();
             using var command = new MySqlCommand("SELECT customerName FROM customers WHERE customerID = @customerID;", connection);
